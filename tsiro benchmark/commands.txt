@@ -1,0 +1,12 @@
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe raise_verify.py plan
+.\.venv\Scripts\python.exe raise_verify.py run --workers 16
+.\.venv\Scripts\python.exe raise_verify.py audit-watch --workers 4
+.\.venv\Scripts\python.exe raise_evidence.py
+.\.venv\Scripts\python.exe raise_qualify.py
+.\.venv\Scripts\python.exe raise_verify.py timings
+.\.venv\Scripts\python.exe raise_report.py
+node .csv-export-tools/raise-results.mjs
+.\.venv\Scripts\python.exe raise_csv_audit.py
+.\.venv\Scripts\python.exe raise_package.py

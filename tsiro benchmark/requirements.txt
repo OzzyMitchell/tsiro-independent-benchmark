@@ -1,0 +1,8 @@
+numpy==2.2.6
+numba==0.68.0
+llvmlite==0.50.0
+pillow==12.3.0
+jpeglib==1.0.2
+imagecodecs==2026.8.16
+rawpy==0.27.1
+tifffile==2026.9.20
