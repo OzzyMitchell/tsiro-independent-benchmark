@@ -44,7 +44,7 @@ MB is decimal and MP/s is million pixels per second. All codec settings are loss
 
 Measured on an AMD Ryzen 9 9950X3D running Windows 11. Input loading, hashing and saving output files were excluded from timing. Tsiro's internal temporary JPEG file I/O was included.
 
-All 4,032 Tsiro roundtrips and all 32,256 codec streams reproduced the input pixels exactly. A separate process audit reopened the source files, regenerated the inputs and decoded every saved stream.
+All 4,032 Tsiro roundtrips and all 32,256 codec streams reproduced the input pixels exactly. I checked the results again in a separate run, recreating the inputs and decoding every saved output.
 
 ## Results
 
