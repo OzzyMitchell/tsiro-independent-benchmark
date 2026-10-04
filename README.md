@@ -4,13 +4,13 @@ An independent benchmark of [Tsiro](https://github.com/Daxlia/Tsiro), using 2,01
 
 Tested revision: [36287d4](https://github.com/Daxlia/Tsiro/commit/36287d4d7d753f8a74beb8c5047fe6e5974fcfa6).
 
-I converted the RAW files to 8-bit RGB, resized them to a maximum edge of 1,024 pixels and cropped them to dimensions divisible by 16. Each image was tested directly and again after JPEG compression.
+I converted the RAW files to 8 bit RGB, resized them to a maximum edge of 1024 pixels and cropped them to dimensions divisible by 16. Each image was tested directly and again after JPEG compression.
 
 The file sizes cover all 2,016 images in each group. For speed, I tested 12 images from each group, running one codec at a time. Each test had a warmup followed by three timed runs. The speeds below use the total pixel count divided by the sum of each image's median time.
 
 ## JPEG recompression
 
-Each image was saved as a JPEG once, at quality 60, 75, 85, 90, 95 or 98 with 4:4:4 or 4:2:0 chroma. There were 168 images per combination. The codecs then compressed the decoded RGB pixels. This checks whether those pixels are recovered exactly; it does not reconstruct the original JPEG file.
+Each image was saved as a JPEG once, at quality 60, 75, 85, 90, 95 or 98 with 4:4:4 or 4:2:0 chroma. There were 168 images per combination. The codecs then compressed the decoded RGB pixels. This checks whether those pixels are recovered properly.
 
 | Codec | Total size (MB) | Encode (MP/s) | Decode (MP/s) |
 |---|---:|---:|---:|
@@ -25,7 +25,7 @@ Each image was saved as a JPEG once, at quality 60, 75, 85, 90, 95 or 98 with 4:
 
 ## Direct compression
 
-The same RGB8 images before JPEG compression. These came from the RAW sensor data. The embedded JPEG previews were not used.
+The same RGB8 images before JPEG compression. These came from the RAW sensor data. The embedded JPEG previews were not used obviously.
 
 | Codec | Total size (MB) | Encode (MP/s) | Decode (MP/s) |
 |---|---:|---:|---:|
@@ -42,7 +42,7 @@ MB is decimal and MP/s is million pixels per second. All codecs used lossless se
 
 These tests ran on an AMD Ryzen 9 9950X3D with Windows 11. Loading inputs, hashing and saving outputs were not timed. Tsiro's own temporary JPEG reads and writes were included.
 
-Every decoded image matched its input exactly: 4,032 Tsiro roundtrips and 32,256 codec outputs in total. I checked the results again in a separate run, recreating the inputs and decoding every saved output.
+Every decoded image matched its input properly. 4,032 Tsiro roundtrips and 32,256 codec outputs in total. I checked the results again in a separate run, recreating the inputs and decoding every saved output.
 
 ## Results
 
@@ -56,4 +56,4 @@ Each CSV has 16,128 rows, covering 2,016 images and eight codec settings. The CS
 
 You'll need Python 3.12 and Node.js. Open PowerShell in the `tsiro benchmark` directory and run the commands in [commands.txt](tsiro%20benchmark/commands.txt). The first run downloads the RAW inputs.
 
-The package versions are listed in [requirements.txt](tsiro%20benchmark/requirements.txt). The scripts prepare the images, run the codecs, check the decoded pixels and export both CSVs.
+The package versions are listed in [requirements.txt](tsiro%20benchmark/requirements.txt). The scripts prepare the images, run the codecs, check the decoded pixels and then export both CSVs.
